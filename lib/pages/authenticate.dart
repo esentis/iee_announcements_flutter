@@ -14,17 +14,15 @@ class AuthenticationPage extends StatelessWidget {
       child: WebView(
         javascriptMode: JavascriptMode.unrestricted,
         initialUrl:
-            '$kLoginUrl?client_id=${env['CLIENT_ID']}&response_type=code&scope=announcements,refresh_token,profile&redirect_uri=${env['RESPONSE_URL']}',
-        onPageFinished: (url) {
-          logger.wtf(url);
-
+            '$kLoginUrl?client_id=${env['CLIENT_ID']}&response_type=code&scope=announcements,notifications,refresh_token,profile&redirect_uri=${env['RESPONSE_URL']}',
+        onPageFinished: (url) async {
           // Code is at specific position in response url
-          var code = url.substring(32, 57);
-          logger.wtf(code);
           if (!isNumeric(url.substring(32, 57))) {
             logger.wtf('Not signed in yet');
           } else {
-            getAccessToken(url.substring(32, 57));
+            var response = await getAccessToken(url.substring(32, 57));
+            logger.wtf(response['access_token']);
+            await getProfile(response['access_token']);
             Navigator.pop(context);
           }
         },
