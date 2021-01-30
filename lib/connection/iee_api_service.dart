@@ -5,7 +5,6 @@ import 'package:logger/logger.dart';
 
 var logger = Logger();
 BaseOptions apiOptions = BaseOptions(
-  baseUrl: 'https://the-cocktail-db.p.rapidapi.com/',
   receiveDataWhenStatusError: true,
   contentType: 'application/x-www-form-urlencoded',
   connectTimeout: 6 * 1000, // 6 seconds
@@ -17,17 +16,70 @@ Dio http = Dio(apiOptions);
 Future getAccessToken(String code) async {
   Response response;
   try {
-    response = await http.post(kTokenUrl, data: {
-      'client_id': env['CLIENT_ID'],
-      'client_secret': env['SECRET'],
-      'grant_type': 'authorization_code',
-      'code': code
-    });
+    response = await http.post(
+      kTokenUrl,
+      data: {
+        'client_id': env['CLIENT_ID'],
+        'client_secret': env['SECRET'],
+        'grant_type': 'authorization_code',
+        'code': code
+      },
+      options: Options(
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
     logger.i('Getting access token');
     logger.wtf(response.data);
+    return response.data;
   } on DioError catch (e) {
     logger.e(e);
     return e.type;
   }
-  return response.data;
+}
+
+/// Refreshes a token
+Future refreshToken(String token) async {
+  Response response;
+  try {
+    response = await http.post(
+      kTokenUrl,
+      data: {
+        'client_id': env['CLIENT_ID'],
+        'client_secret': env['SECRET'],
+        'grant_type': 'refresh_token',
+        'code': token,
+      },
+      options: Options(
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      ),
+    );
+    logger.i('Getting access token');
+    logger.wtf(response.data);
+    return response.data;
+  } on DioError catch (e) {
+    logger.e(e);
+    return e.type;
+  }
+}
+
+/// Gets profile info
+Future getProfile(String accessToken) async {
+  Response response;
+  try {
+    response = await http.get('${kApiUrl}profile',
+        options: Options(headers: {
+          'x-access-token': accessToken,
+          'Content-Type': 'application/json'
+        }));
+    logger.i('Getting profile info');
+    logger.wtf(response.data);
+    return response.data;
+  } on DioError catch (e) {
+    logger.e(e);
+    return e.type;
+  }
 }
