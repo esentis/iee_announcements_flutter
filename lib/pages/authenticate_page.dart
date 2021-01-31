@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:iee_announcements_flutter/connection/iee_api_service.dart';
 import 'package:iee_announcements_flutter/constants.dart';
+import 'package:iee_announcements_flutter/pages/announcements_page.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:logger/logger.dart';
 
@@ -23,7 +25,9 @@ class AuthenticationPage extends StatelessWidget {
             var response = await getAccessToken(url.substring(32, 57));
             logger.wtf(response['access_token']);
             await getProfile(response['access_token']);
-            Navigator.pop(context);
+            await Get.to(
+              AnnouncementsPage(),
+            );
           }
         },
       ),
