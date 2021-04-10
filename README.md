@@ -1,16 +1,11 @@
-# iee_announcements_flutter
+<p align="center">
+  <img src="ihu_logo.png" alt="IEE IHU" /> <br /><br />
+  <span>An app for delivering IEE IHU Announcements.  <br />The project mainly a proof of concept and showcases the Authentication/Authorization flow with Apps API.</span>
+</p>
 
-A new Flutter project.
+<p align="center">
+ <img src="https://img.shields.io/github/last-commit/esentis/feelm-movie-guru?style=for-the-badge" alt="Last Commit" /></br>
+  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" /> <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Dart" /> <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
+</p>
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
