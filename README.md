@@ -1,6 +1,6 @@
 <p align="center">
   <img src="ihu_logo.png" alt="IEE IHU" /> <br /><br />
-  <span>An app for delivering IEE IHU Announcements.  <br />The project mainly a proof of concept and showcases the Authentication/Authorization flow with Apps API.</span>
+  <span>An app for delivering IEE IHU Announcements.  <br />The project is mainly a proof of concept and showcases the Authentication/Authorization flow with Apps API.</span>
 </p>
 
 <p align="center">
