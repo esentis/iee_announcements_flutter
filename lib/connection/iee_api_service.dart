@@ -95,7 +95,6 @@ Future getAnnouncenemts(String accessToken) async {
           'Content-Type': 'application/json'
         }));
     logger.i('Getting profile info');
-    logger.wtf(response.data);
     return response.data;
   } on DioError catch (e) {
     logger.e(e);
